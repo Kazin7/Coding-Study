@@ -1,0 +1,36 @@
+하나의 자연수를 입력 받아 각 자릿수의 합을 계산하는 프로그램을 작성하라.
+
+
+[제약 사항]
+
+자연수 N은 1부터 9999까지의 자연수이다. (1 ≤ N ≤ 9999)
+
+
+[입력]
+
+입력으로 자연수 N이 주어진다.
+
+
+[출력]
+
+각 자릿수의 합을 출력한다.
+
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+    Scanner in = new Scanner(System.in);
+    int num , res;
+    int a = 0,b = 0,c = 0,d = 0;
+    num = in.nextInt();
+     
+    a = num/1000;
+    res = num - ( a * 1000 );
+    b = res/100;
+    res = res - (b * 100);
+    c = res/10;
+    res = res - (c * 10);
+    d = res;
+         
+    System.out.println(a+b+c+d);
+ }
+}
