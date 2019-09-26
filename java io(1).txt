@@ -1,0 +1,33 @@
+import java.io.*;
+public class exam {
+
+	public static void main(String[] args) {
+		exam ex = new exam();
+		String fileName = "C:\\Users\\김영식\\Documents\\STOVE\\score.txt";
+		ex.printGrade(fileName);
+
+	}
+	public void printGrade(String fileName) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String c;
+			String name[] = new String[4];
+			String score[] = new String[4];
+			int line = 0;
+			
+			while((c = br.readLine()) != null) {
+				name[line] = c.split(",")[0];
+				score[line] = c.split(",")[1];
+				line++;
+			}
+			for(int i = 0 ; i < 4 ; i++) {
+				System.out.println(name[i] + "의 점수는 " + score[i] + "입니다.");
+			}
+			br.close();
+		}catch(FileNotFoundException e) {
+			
+		}catch(IOException e) {
+			
+		}
+	}
+}
