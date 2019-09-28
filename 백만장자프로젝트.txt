@@ -1,0 +1,129 @@
+25년 간의 수행 끝에 원재는 미래를 보는 능력을 갖게 되었다. 이 능력으로 원재는 사재기를 하려고 한다.
+
+다만 당국의 감시가 심해 한 번에 많은 양을 사재기 할 수 없다.
+
+다음과 같은 조건 하에서 사재기를 하여 최대한의 이득을 얻도록 도와주자.
+
+    1. 원재는 연속된 N일 동안의 물건의 매매가를 예측하여 알고 있다.
+    2. 당국의 감시망에 걸리지 않기 위해 하루에 최대 1만큼 구입할 수 있다.
+    3. 판매는 얼마든지 할 수 있다.
+
+예를 들어 3일 동안의 매매가가 1, 2, 3 이라면 처음 두 날에 원료를 구매하여 마지막 날에 팔면 3의 이익을 얻을 수 있다.
+
+
+[입력]
+
+첫 번째 줄에 테스트 케이스의 수 T가 주어진다.
+
+각 테스트 케이스 별로 첫 줄에는 자연수 N(2 ≤ N ≤ 1,000,000)이 주어지고,
+
+둘째 줄에는 각 날의 매매가를 나타내는 N개의 자연수들이 공백으로 구분되어 순서대로 주어진다.
+
+각 날의 매매가는 10,000이하이다.
+
+
+[출력]
+
+각 테스트 케이스마다 ‘#x’(x는 테스트케이스 번호를 의미하며 1부터 시작한다)를 출력하고, 최대 이익을 출력한다.
+
+
+[예제 풀이]
+
+1번째 케이스는 아무 것도 사지 않는 것이 최대 이익이다.
+
+2번째 케이스는 1,2일에 각각 한 개씩 사서 세 번째 날에 두 개를 팔면 10의 이익을 얻을 수 있다.
+
+import java.util.*;
+
+public class Solution{
+ 	public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        
+        int test;
+        int num;
+        int price[];
+        int money;
+        int at;
+        int minus;
+        int big;
+        int index;
+        
+        test = in.nextInt();
+        for(int i = 0 ; i< test ; i++){
+        	minus = 0;
+            at = 0;
+            money = 0;
+            index = 0;
+            big = -10000;
+            num = in.nextInt();
+            price = new int[num];
+            
+            for(int k = 0 ;k<num;k++){//미래에서 본 가격 입력
+                price[k] = in.nextInt();
+                if(big < price[k]) {
+                	big = price[k];
+                	index = k;
+                }
+            }
+            
+            for(int j = 0 ;j < num ; j++){
+                if( j < index ) {
+                	minus += price[j];
+                	at++;
+                }
+                else if(j == index) {
+                	money = (at * price[j]);
+                	at = 0;
+                }
+                else if(j == (num-1)){//마지막일경우
+                	money += (at * price[j]);//판매
+                	at = 0;
+                }
+                else {
+                	 if(price[j] <= price [j+1]){//오늘 가격이 내일 가격보다 쌀경우
+                     	minus += price[j];//그날의 가격을 저장
+                         at++;//가지고있는 갯수 1증가
+                     }
+                     else{//내일이 더 쌀경우
+                         money += (at * price[j]);//가지고있는 모든 갯수를 판매
+                         at = 0;//갯수를 0으로 초기화
+                     }
+                }
+            }
+            System.out.println("#" + (i+1) + " " + (money - minus));
+        }
+    }
+}
+
+
+--다른분의 소스(리메이크)
+import java.util.*;
+ 
+ 
+public class Solution {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int test = in.nextInt();
+        long sum;
+
+        for(int i = 1 ; i<=test ; i++){
+            int num = in.nextInt();
+            int arr[] = new int[num];
+            for(int j=0;j<num;j++){
+                arr[j] = in.nextInt();
+            }
+            sum = 0;
+ 
+            int max = 0;
+            for(int j=num-1;j>=0;j--){
+                max = Math.max(arr[j], max); //뒤쪽부터해서 비교하여 큰값을 저장
+                sum = sum+ max-arr[j]; //이부분이 엄청 잘만드심 -> 큰값은 더하고 작은값은 빼는식으로 
+				나중에 한꺼번에 변수들을 모아서 계산해야되는것을 한번에함
+            }
+            System.out.println("#"+i+" "+sum);
+        }
+    }
+}
+ex) 내가 넣은 숫자들의 테스트케이스는 전부 맞지만 long타입 숫자를 배열 크기로 지정할수 없는 문제때문에 완벽하게 정답이 나오지는 못하였다.
+-개인적으로 여기 난이도에 맞지않고 이상한 문제인 느낌이다.
+-테스트케이스 파일을 보니 숫자가 장난아니다... 같이 올린다
