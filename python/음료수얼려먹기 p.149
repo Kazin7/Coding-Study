@@ -3,7 +3,7 @@ n,m = map(int , input().split())
 bowl = []
 
 for i in range(n):
-  bowl.append(list(map(int , input().split())))
+  bowl.append(list(map(int , input())))
 
 def dfs(x,y):
   if(x >= n or x < 0 or y < 0 or y >= m):
