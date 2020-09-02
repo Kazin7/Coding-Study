@@ -1,0 +1,3 @@
+큐 자료구조를 사용할때:
+	deque라이브러리를 사용하여 popleft함수를 이용하면 큐 자료구조가 구성됨
+	ex)from collections import deque
