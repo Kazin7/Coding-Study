@@ -1,3 +1,8 @@
+#캐릭터의 움직임을 이용하여 모든칸을 가보는 문제
+#n,m은 맵의 크기
+#x,y,dir은 캐릭터의 위치 & 보고있는 방향 (북,동,남,서)
+#check는 맵을 받는데 1일경우 바다 0일경우 육지로 처리
+#문제 알고리즘을 토대로 몇개의 블럭에 도달하는지 계산하는 문제
 n,m = map(int , input().split())
 x,y,dir = map(int , input().split())
 check = [[0]*m for _ in range(n)]

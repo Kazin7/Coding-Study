@@ -1,0 +1,32 @@
+#dfs문제
+#n,m은 맵의 크기를 받는다
+#bowl은 맵정보를 받는다
+#맵의 정보를 토대로 연속된 0의 뭉치의 갯수를 계산하는 문제
+#0은 물 1은 칸막이
+n,m = map(int,input().split())
+
+bowl = []
+
+for i in range(n):
+  bowl.append(list(map(int,input())))
+
+def dfs(x,y):
+  if(x < 0 or x >= n or y >= m or y < 0):
+    return False
+  if(bowl[x][y] == 0):
+    bowl[x][y] = 1
+    dfs(x,y-1)
+    dfs(x,y+1)
+    dfs(x-1,y)
+    dfs(x+1,y)
+    return True
+  return False
+
+count = 0
+
+for i in range(n):
+  for j in range(m):
+    if(dfs(i,j)):
+      count = count+1
+
+print(count)
