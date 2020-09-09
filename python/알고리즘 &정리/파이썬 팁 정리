@@ -1,3 +1,10 @@
 큐 자료구조를 사용할때:
 	deque라이브러리를 사용하여 popleft함수를 이용하면 큐 자료구조가 구성됨
 	ex)from collections import deque
+
+딕셔너리를 사용할때:
+  i)value값을 이용하여 오름차순 정렬
+    array = sorted(array.items(),key=lambda item:item[1])
+  ii)key값을 이용하여 오름차순 정렬
+    array = sorted(array.items())
+  

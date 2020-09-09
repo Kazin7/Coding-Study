@@ -1,0 +1,17 @@
+#학생수 ,학생이름과 성적을 입력받고 사전에 값을 넣어 정렬한뒤
+#오름차순으로 정리한것의 키값(이름)을 출력한다
+
+n = int(input())
+array = {}
+
+for i in range(n):
+  data = input().split()
+  array[data[0]] = int(data[1])
+
+array = sorted(array.items(),key=lambda item:item[1])
+
+for key,value in array:
+  print(key , end = ' ')
+
+
+

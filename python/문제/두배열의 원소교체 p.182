@@ -1,0 +1,14 @@
+#배열 두개의 값을 교환하여 A의 합이 가장 크게 만드는 문제
+#n은 배열의크기 k는 교환 횟수
+
+n,k = map(int,input().split())
+
+A = list(map(int , input().split()))
+B = list(map(int , input().split()))
+
+for i in range(k):
+  a = A.index(min(A))
+  b = B.index(max(B))
+  A[a],B[b] = B[b],A[a]
+
+print(sum(A))
