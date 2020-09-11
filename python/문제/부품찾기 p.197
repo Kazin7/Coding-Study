@@ -1,0 +1,60 @@
+#부품 모음에서 특정한 부품이 있는지 없는지 확인하는 문제
+
+1)순차탐색
+
+n = int(input())
+store = list(map(int,input().split()))
+
+m = int(input())
+want = list(map(int,input().split()))
+
+real = False
+for component in want:
+  real = False
+  for check in store:
+    if(component == check):
+      print("yes" , end = ' ')
+      real = True
+      break
+  if(not real):
+   print("no" , end = ' ')
+
+2)이진탐색
+
+def binary_search(array,target,start,end):
+  if(start > end):
+    return None
+  mid = (start+end)// 2
+  if(array[mid] == target):
+    return mid
+  elif(array[mid] > target):
+    return binary_search(array,target,start,mid-1)
+  else:
+    return binary_search(array,target,mid+1,end)
+
+n = int(input())
+store = list(map(int,input().split()))
+store.sort()
+m = int(input())
+want = list(map(int,input().split()))
+
+for component in want:
+  ans = binary_search(store,component,0,n-1)
+  if(ans != None):
+    print("yes" , end = ' ')
+  else:
+    print("no" , end = ' ')
+
+3) set함수 사용
+
+n = int(input())
+store = set(map(int,input().split()))
+
+m = int(input())
+want = list(map(int,input().split()))
+
+for component in want:
+  if(component in store):
+    print("yes" , end = ' ')
+  else:
+    print("no" , end = ' ')

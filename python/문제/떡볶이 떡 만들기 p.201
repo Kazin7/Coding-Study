@@ -1,0 +1,24 @@
+#떡볶이떡을 일정한길이로 잘라서 나온 나머지를 손님에게주는 문제
+#손님이 원하는 만큼의 길이가 나오도록 자르는 일정한길이를 조정한다
+n,m = map(int,input().split())
+tteok = list(map(int,input().split()))
+
+start = 0
+end = max(tteok)
+
+ans = 0
+while(start <= end):
+  mid = (start+end) // 2
+  cut = 0
+
+  for i in tteok:
+    if( i > mid ):
+      cut += i - mid
+
+  if(cut < m):
+    end = mid - 1
+  else:
+    ans = mid
+    start = mid + 1
+
+print(ans)
