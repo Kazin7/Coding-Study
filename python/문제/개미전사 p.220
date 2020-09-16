@@ -1,0 +1,16 @@
+#창고에서 개미가 최대로 가져올수 있는 식량의 양
+#단 인접한 창고에서는 곡물을 가져올 수 없다.
+
+n = int(input())
+
+storage = list(map(int,input().split()))
+
+d = [0] * 101
+
+d[1] = storage[0]
+d[2] = max(storage[1] , d[1])
+
+for i in range(3,n+1):
+  d[i] = max(d[i-1] , d[i-2]+storage[i-1])
+
+print(d[n])
