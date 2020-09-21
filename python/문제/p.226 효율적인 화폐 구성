@@ -1,0 +1,22 @@
+#화폐의 종류와 합을 주고 합을 만드는데 드는 최소한의 갯수를 구하는 문제
+#점화식을 이용하여 다이나믹프로그래밍으로 구성
+
+sort,money = map(int , input().split())
+
+array = []
+
+for i in range(sort):
+  array.append(int(input()))
+
+d = [10001] * (money+1)
+
+d[0] = 0
+
+for i in range(sort):
+  for j in range(array[i] , money+1):
+    d[j] = min(d[j] , d[j-array[i]]+1)
+
+if(d[money] == 10001):
+  print(-1)
+else:
+  print(d[money])
