@@ -1,2 +1,2 @@
 # Coding-Study
-This is my first coding text. I will solve the problems in SW Expert Academy.
+This is my first coding text. I will solve the problems with java or python.
