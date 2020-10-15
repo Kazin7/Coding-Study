@@ -1,0 +1,51 @@
+#union-find알고리즘으로도 불린다
+#서로소인 두 집합을 union으로 합치거나 find로 루트노드를 알아낼수있다
+#무방향 그래프내에서 사이클을 판별할때 사용한다
+
+#find시 재귀를 이용하지 않는 경로압축기법 사용
+def find_parent(parent ,x):
+  if parent[x] != x:
+    parent[x] = find_parent(parent,parent[x])
+  return parent[x]
+
+def union_parent(parent,a,b):
+  a = find_parent(parent,a)
+  b = find_parent(parent,b)
+  if(a < b):
+    parent[b] = a
+  else:
+    parent[a] = b
+
+v,e = map(int,input().split())
+parent = [0] * (v+1)
+
+for i in range(1,v+1):
+  parent[i] = i
+<
+for i in range(e):
+  a,b = map(int,input().split())
+  union_parent(parent,a,b)
+>
+
+/*
+#사이클 일경우 <> 부분을 아래의 부분으로 바꾸어서 사이클을 체크할수있다
+cycle = False
+
+for i in range(e):
+  a,b = map(int,input().split())
+
+  if(find_parent(parent , a) == find_parent(parent,b)):
+    cycle = True
+    break
+  else:
+    union_parent(parent,a,b)
+*/
+
+print('원소 집합 : ' , end = '')
+for i in range(1,v+1):
+  print(find_parent(parent,i),end=' ')
+print()
+
+print('부모테이블 : ' ,end = '')
+for i in range(1,v+1):
+  print(parent[i],end=' ')
