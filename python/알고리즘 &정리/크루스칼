@@ -1,0 +1,46 @@
+-시간복잡도는 O(ElogE) #간선의 갯수가 E개일경우
+
+#부모를 찾아서 리턴하는 함수 매개변수는 부모배열과 부모를 찾으려는 노드
+def find_parent(parent , x):
+  if(parent[x] != x)://x의 부모가 x가 아닐경우
+    parent[x] = find_parent(parent,parent[x])
+    //재귀를 이용하여 부모의 부모를 찾는다
+  
+  return parent[x]
+  //x의 부모가 자기자신일경우엔 x를 리턴해도되지만 재귀를 돌릴때 사용하기위해서 부모의 값을 리턴한다
+
+#두 노드를 연결하기위한 함수 매개변수로 부모정보를 가지고있는 배열과 두 노드가 필요하다
+def union_parent(parent , a ,b):
+  a = find_parent(parent,a)//각각 자신의 루트노드를 가져온다
+  b = find_parent(parent,b)
+  #루트노드의 값이 작은것이 큰것의 부모노드가 된다
+  if(a < b)://a의 루트노드보다 b의 루트노드가 클경우
+    parent[b] = a//b의 부모를 a로 설정
+  else:
+    parent[a] = b
+
+v,e = map(int,input().split())//간선의 갯수와 노드 갯수를 입력받는다
+parent = [0] *(v+1)//노드 갯수+1만큼 배열을 생성한다
+
+for i in range(1,v+1):
+  parent[i] = i//모두 부모가 자기자신인것으로 초기화
+
+edges = []//간선의 정보를 가지고있을 배열
+result = 0//연결하는데 필요한 모든 비용을 저장할 변수
+
+for _ in range(e)://간선의 갯수만큼 반복
+  a,b,cost =map(int,input().split())//임시변수들에 값을 대입
+  edges.append((cost,a,b))//간선배열에 값을 추가한다
+
+edges.sort()//비용이 작은순서대로 정렬
+
+for edge in edges://간선의 갯수만큼 반복
+  cost,a,b = edge//간선의 값들을 임시변수에 대입
+
+  #두 노드의 루트노드가 일치하지않을경우
+  if(find_parent(parent,a) != find_parent(parent,b)):
+    union_parent(parent,a,b)//두 노드를 연결한다
+    print(a,'->',b,'=',cost)//어떤 노드를 연결했는지 출력
+    result += cost//총 비용에 더해준다
+
+print(result)//총비용 출력
