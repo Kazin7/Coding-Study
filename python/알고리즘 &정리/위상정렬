@@ -1,0 +1,27 @@
+-시간복잡도는 O(V+E)
+-자신의 노드를 가리키고있는 노드의 갯수를 진입차수라고하여 진입차수가 0인 노드를 큐에넣어서 순서를 정하는 알고리즘
+
+from collections import deque
+
+v,e = map(int,input().split())
+indegree = [0] * (v+1)
+edges = []
+q = deque()
+for _ in range(e):
+  a,b = map(int,input().split())
+  indegree[b] += 1
+  edges.append((a,b))
+
+for i in range(1,v+1):
+  if(indegree[i] == 0):
+    q.append(i)
+
+while q:
+  now = q.popleft()
+  print(now , end =' ')
+  for edge in edges:
+    a,b = edge
+    if(now == a):
+      indegree[b] -= 1
+      if(indegree[b] == 0):
+        q.append(b)

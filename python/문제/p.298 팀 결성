@@ -1,0 +1,38 @@
+-학생들은 처음에 각각 자신만의 팀을 가지고있음
+-처음 입력받는수가 0으로 시작하면 두 학생의 팀을 합친다
+-1일경우에는 두 학생이 같은 팀인지 체크한다
+
+def find_parent(parent , x):
+  if(parent[x] != x):
+    parent[x] = find_parent(parent,parent[x])
+  return parent[x]
+def union_team(parent , a, b):
+  a = find_parent(parent,a)
+  b = find_parent(parent,b)
+  if(a < b):
+    parent[b] = a
+  else:
+    parent[a] = b
+def same_team(parent,a,b):
+  a = find_parent(parent,a)
+  b = find_parent(parent,b)
+  if(a != b):
+    result.append('No')
+  else:
+    result.append('Yes')
+
+v,e = map(int,input().split())
+result = []
+parent = [0] * (v+1)
+for i in range(1,v+1):
+  parent[i] = i
+
+for _ in range(e):
+  check,a,b = map(int,input().split())
+  if(check == 0):
+    union_team(parent,a,b)
+  else:
+    same_team(parent,a,b)
+
+for show in result:
+  print(show)
