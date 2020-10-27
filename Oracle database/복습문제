@@ -23,3 +23,20 @@ SELECT E1.EMPNO,E1.ENAME,E1.MGR,
   //(+)가 왼쪽일경우 하급자가 없는사람들이 출력
   //(+)가 오른쪽일경우 상급자가 없는 사람들이 출력
 ORDER BY E1.EMPNO
+
+CHAPTER 9
+#1 P.245
+SELECT *
+    FROM EMP
+   WHERE COMM > (SELECT COMM
+                    FROM EMP
+                   WHERE ENAME = 'ALLEN');
+
+#2 P.248
+SELECT E.EMPNO, E.ENAME, E.JOB, E.SAL, D.DEPTNO,D.DNAME,D.LOC
+    FROM EMP E ,DEPT D
+   WHERE E.DEPTNO = D.DEPTNO
+     AND E.DEPTNO = 20
+     AND E.SAL <= (SELECT AVG(SAL)
+                      FROM EMP);
+
