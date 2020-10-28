@@ -40,3 +40,10 @@ SELECT E.EMPNO, E.ENAME, E.JOB, E.SAL, D.DEPTNO,D.DNAME,D.LOC
      AND E.SAL <= (SELECT AVG(SAL)
                       FROM EMP);
 
+#3 P.257
+SELECT *
+    FROM EMP
+   WHERE HIREDATE < ALL(SELECT HIREDATE
+                            FROM EMP
+                           WHERE DEPTNO = 10);
+                      
