@@ -1,3 +1,7 @@
+=============================================================
+ALTER TABLE CHAP10_DEPT2 RENAME TO CHAP10_DEPT
+//테이블 교환 할때 테이블 삭제후 이름변경
+=============================================================
 CHAPTER 8
 
 #1 P.220
@@ -25,6 +29,7 @@ SELECT E1.EMPNO,E1.ENAME,E1.MGR,
 ORDER BY E1.EMPNO
 
 CHAPTER 9
+
 #1 P.245
 SELECT *
     FROM EMP
@@ -47,3 +52,18 @@ SELECT *
                             FROM EMP
                            WHERE DEPTNO = 10);
                       
+CHAPTER 10
+
+#1 P.267
+CREATE TABLE EMP_TEMP10
+  AS SELECT * FROM EMP
+
+#2 P.279
+UPDATE EMP_TEMP
+    SET COMM = 50
+   WHERE SAL <= 2500
+
+#3 P.285
+DELETE FROM EMP_TEMP
+ WHERE SAL >= 3000
+
