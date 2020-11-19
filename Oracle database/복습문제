@@ -117,3 +117,18 @@ CREATE VIEW VM_EMP30ALL
             FROM EMP
            WHERE(DEPTNO = 30));
 
+
+CHAPTER 14
+
+#1 P.369 
+ALTER TABLE 테이블 이름1
+MODIFY(열이름 NOT NULL)
+
+#2 P.376
+ALTER TABLE 테이블이름
+MODIFY(열이름 UNIQUE)
+
+#3 P.389
+제약조건은 어떤 테이블에 저장할 테이터 특성을 정의하는데 사용하는 특수한 규칙을 뜻합니다.
+오라클 데이터베이스에서 사용할 수 있는 제약조건은 다섯 가지가 있는데요.
+지정한 열에 NULL값을 제외한 값의 중복이 불가능한 UNIQUE, NULL을 허용하지 않는 NOT NULL,다른테이블의 열을 참조하는 FOREIGN KEY, NULL값과 데이터의 중복을 모두 허용하지 않는 PRIMARY KEY가 있습니다.
