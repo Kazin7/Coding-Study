@@ -1,0 +1,59 @@
+#Q1
+
+1.
+SET SERVEROUTPUT ON;
+DECLARE
+   V_EMP_ROW EMP%ROWTYPE;
+   CURSOR C1 IS
+    SELECT * FROM EMP;
+BEGIN
+    OPEN C1;
+    LOOP
+        FETCH C1 INTO V_EMP_ROW;
+        EXIT WHEN C1%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('EMPNO : '    || V_EMP_ROW.EMPNO
+                       || ', ENAME : '    || V_EMP_ROW.ENAME
+                       || ', JOB : '      || V_EMP_ROW.JOB
+                       || ', SAL : '      || V_EMP_ROW.SAL
+                       || ', DEPTNO : '   || V_EMP_ROW.DEPTNO		
+		       );
+    END LOOP;
+    CLOSE C1;
+END;
+/
+
+2.
+SET SERVEROUTPUT ON;
+DECLARE
+   CURSOR C1 IS
+    SELECT * FROM EMP;
+BEGIN
+    FOR C1_rec IN C1 LOOP
+        DBMS_OUTPUT.PUT_LINE('EMPNO : '    || c1_rec.EMPNO
+                      || ', ENAME : '    || c1_rec.ENAME
+                      || ', JOB : '      || c1_rec.JOB
+                      || ', SAL : '      || c1_rec.SAL
+                      || ', DEPTNO : '   || c1_rec.DEPTNO);
+    END LOOP;
+END;
+/
+
+
+#Q2
+
+SET SERVEROUTPUT ON;
+DECLARE
+   V_WRONG DATE;
+BEGIN
+    SELECT ENAME INTO V_WRONG
+        FROM EMP
+       WHERE EMPNO = 7369;
+       
+       DBMS_OUTPUT.PUT_LINE('에외발생시 이문장을 실행하지않음');
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('오류가 발생하였습니다.' || TO_CHAR(SYSDATE, '[YYYY"년"MM"월"DD"일" HH24"시"mm"분"SS"초"]'));
+        DBMS_OUTPUT.PUT_LINE('SQLCODE : ' || TO_CHAR(SQLCODE));
+        DBMS_OUTPUT.PUT_LINE('SQLERRM : ' || SQLERRM);
+END;
+/
