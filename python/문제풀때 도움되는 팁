@@ -1,0 +1,56 @@
+s.title => s 문장의 단어 첫번째가 대문자로바뀜
+set() => 사용시 중복값 제거
+filter() => falsey값 제거 False,None,0,""
+s.count(value) => value 값이 s문장에 몇개있는지 계산함
+
+리스트 컴프리헨션(list comprehension)
+item = [1,2,3,4,5,6]
+print([x for x in item if x > 3])
+
+숫자를 각자리수로만 리스트 만들기
+list(map(int,str(n)) => n이라는 123의값을 가지고있을경우
+list = [1,2,3]으로 만듬
+
+리스트 슬라이싱
+s[1:] =>왼쪽부터
+s[:-1]=>오른쪽부터
+
+리스트에서 특정 순서의 값만 가져오기
+s = s[nth-1::nth]
+
+리스트에서 고유하지 않은값 출력
+from collections import Counter
+item for item,count in Counter(lst).items() if count > 1
+
+리스트의 마지막 값을 가져오기
+print(s[-1])
+
+특정한 크기의 리스트 만들기
+[val for x in range(n)]
+
+두 리스트에서 겹치는 값 리스트로 만들기
+list(set(A)&set(B))
+[item for item in A if item in B]
+
+리스트에서 가장 큰값의 인덱스 구하기
+list.index(max(list))
+
+리스트 정렬
+sorted(list ,reverse = False) => True일경우 내림차순
+list.sort()
+
+리스트에서 가장 많은 값
+items = max(set(item), key = item.count)
+
+문장 역순출력
+s[::-1]
+
+랜덤 정수생성
+randint(start,end)
+
+문자열 분할
+s.split("문자")
+
+두 리스트 합치기 중복허용 x
+list(set(A+B))
+
