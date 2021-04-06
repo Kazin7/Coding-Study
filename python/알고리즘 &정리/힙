@@ -1,0 +1,88 @@
+class Heap:
+  def __init__(self,data):
+    self.heap_array = []
+    self.heap_array.append(None)
+    self.heap_array.append(data)
+
+  def insert(self,data):
+    self.heap_array.append(data)
+    index = len(self.heap_array)-1
+
+    while(self.move_up(index)):
+      parent_index = index//2
+      self.heap_array[index] , self.heap_array[parent_index] = self.heap_array[parent_index] , self.heap_array[index]
+      index = parent_index
+
+  def move_up(self,index):
+    if(index <= 1):
+      return False
+    parent_index = index//2
+    if(self.heap_array[index] > self.heap_array[parent_index]):
+      return True
+    else:
+      return False
+  
+  def pop(self):
+    if(len(self.heap_array) <= 1):
+      return None
+    returned = self.heap_array[1]
+    self.heap_array[1] = self.heap_array[-1]
+    del self.heap_array[-1]
+    index = 1
+
+    while self.move_down(index):
+      left = index * 2
+      right = index * 2 + 1
+
+      if(right >= len(self.heap_array)):
+        if(self.heap_array[index] < self.heap_array[left]):
+          self.heap_array[index],self.heap_array[left] = self.heap_array[left],self.heap_array[index]
+          index = left
+
+      else:
+        if(self.heap_array[left] > self.heap_array[right]):
+          if(self.heap_array[index] < self.heap_array[left]):
+            self.heap_array[index],self.heap_array[left] = self.heap_array[left],self.heap_array[index]
+            index = left
+
+        else:
+          if(self.heap_array[index] < self.heap_array[right]):
+            self.heap_array[index],self.heap_array[right] = self.heap_array[right],self.heap_array[index]
+            index = right
+
+
+    return returned
+  def move_down(self,index):
+    left = index * 2
+    right = index * 2 + 1
+    if(left >= len(self.heap_array)):
+      return False
+
+    elif(right >= len(self.heap_array)):
+      if(self.heap_array[index] < self.heap_array[left]):
+        return True
+      else:
+        return False
+
+    else:
+      if(self.heap_array[left] > self.heap_array[right]):
+        if(self.heap_array[index] < self.heap_array[left]):
+          return True
+        else:
+          return False
+      else:
+        if(self.heap_array[index] < self.heap_array[right]):
+          return True
+        else:
+          return False
+      
+
+heap = Heap(15)
+heap.insert(10)
+heap.insert(8)
+heap.insert(5)
+heap.insert(4)
+heap.insert(20)
+print(heap.heap_array)
+print(heap.pop())
+print(heap.heap_array)
