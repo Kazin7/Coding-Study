@@ -20,3 +20,26 @@ if(result == None):
   print("no answer")
 else:
   print(result+1)
+
+
+#New
+def binarySearch(li,key):
+  if(len(li) == 1 and key == li[0]):
+    return True
+  if(len(li) == 1 and key != li[0]) :
+    return False
+  if(len(li) == 0):
+    return False
+
+  mid = len(li)//2
+  if(key == li[mid]):
+    return True
+  else:
+    if(key > li[mid]):
+      return binarySearch(li[mid:] , key)
+    else:
+      return binarySearch(li[:mid] , key)
+
+
+li = [1,2,3,7,12]
+print(binarySearch(li,9))
