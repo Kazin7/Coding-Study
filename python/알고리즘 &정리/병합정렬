@@ -1,0 +1,30 @@
+def merge(left,right):
+  lp = 0
+  rp = 0
+  merged = list()
+  while((len(left) > lp) and (len(right) > rp)):
+    if(left[lp] > right[rp]):
+      merged.append(right[rp])
+      rp += 1
+    else:
+      merged.append(left[lp])
+      lp += 1
+  while(len(left) > lp):
+    merged.append(left[lp])
+    lp += 1
+  while(len(right) > rp):
+    merged.append(right[rp])
+    rp += 1
+  
+  return merged
+
+def split(li):
+  if len(li) <= 1:
+    return li
+  mid = int(len(li)/2)
+  left = split(li[:mid])
+  right = split(li[mid:])
+  return merge(left,right)
+
+li = [1,2,3,12,7]
+print(split(li))

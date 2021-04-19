@@ -1,0 +1,10 @@
+li = [5,3,7,20,1,6]
+
+for i in range(0,len(li)-1):
+  small = i
+  for j in range(i+1,len(li)):
+    if(li[small] > li[j]):
+      small = j
+  li[small],li[i] = li[i],li[small]
+
+print(li)
