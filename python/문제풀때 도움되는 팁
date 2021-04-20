@@ -54,3 +54,5 @@ s.split("문자")
 두 리스트 합치기 중복허용 x
 list(set(A+B))
 
+리스트 반대로 정렬
+list.sort(reverse = True)

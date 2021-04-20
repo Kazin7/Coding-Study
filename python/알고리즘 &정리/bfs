@@ -1,0 +1,29 @@
+def bfs(graph,start):
+  visited = list()
+  queue = list()
+
+  queue.append(start)
+
+  while(queue):
+    node = queue.pop(0)
+    if(node in visited):
+      continue
+    print(node , end = ' ')
+    visited.append(node)
+    for n in graph[node]:
+      queue.append(n)
+
+
+graph = dict()
+graph['A'] = ['B','C']
+graph['B'] = ['A','D']
+graph['C'] = ['A','G','H','I']
+graph['D'] = ['B','E','F']
+graph['E'] = ['D']
+graph['F'] = ['D']
+graph['G'] = ['C']
+graph['H'] = ['C']
+graph['I'] = ['C','J']
+graph['J'] = ['I']
+
+bfs(graph,'A')
