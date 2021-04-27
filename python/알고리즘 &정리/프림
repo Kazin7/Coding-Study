@@ -1,0 +1,32 @@
+edges = [
+  (7,'A','B'),(5,'A','D'),(8,'B','C'),
+  (9,'B','D'),(7,'B','E'),(5,'C','E'),
+  (7,'D','E'),(6,'D','F'),(8,'E','F'),
+  (9,'E','G'),(11,'F','G')
+]
+from collections import defaultdict
+from heapq import *
+
+def prim(start,edges):
+  mst = list()
+  adj = defaultdict(list)
+  for weight,n1,n2 in edges:
+    adj[n1].append((weight,n1,n2))
+    adj[n2].append((weight,n2,n1))
+
+  connect = set(start)
+  candidate_edge = adj[start]
+  heapify(candidate_edge)
+  
+  while candidate_edge:
+    weight,n1,n2 = heappop(candidate_edge)
+    if(n2 not in connect):
+      connect.add(n2)
+      mst.append((weight,n1,n2))
+      for edge in adj[n2]:
+        if(edge[2] not in connect):
+          heappush(candidate_edge,edge)
+
+  return mst
+  
+print(prim('A',edges))
