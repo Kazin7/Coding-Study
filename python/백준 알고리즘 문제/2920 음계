@@ -1,0 +1,20 @@
+a = list()
+a = list(map(int ,input().split()))
+before = a[0]
+check = 'mixed'
+for num in a:
+  if(num == a[0]):
+    continue
+  else:
+    if((before+1) == num):
+      before = num
+      check = 'ascending'
+      continue
+    elif((before-1) == num):
+      before = num
+      check = 'descending'
+      continue
+    else:
+      check = 'mixed'
+      break
+print(check)

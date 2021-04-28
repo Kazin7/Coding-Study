@@ -1,0 +1,22 @@
+N = int(input())
+
+for m in range(N):
+  secret = input()
+  st1 = []
+  st2 = []
+  for c in secret:
+    if(c == '>'):
+      if(st2):
+        st1.append(st2.pop())
+    elif(c == '<'):
+      if(st1):
+        st2.append(st1.pop())
+    elif(c == '-'):
+      if(st1):
+        st1.pop()
+    else:
+      st1.append(c)
+    
+  st1.extend(reversed(st2))
+  print(''.join(st1))
+  
