@@ -1,0 +1,7 @@
+import hashlib
+
+c = input()
+s = c.encode()
+
+result = hashlib.sha256(s).hexdigest()
+print(result)
